@@ -81,6 +81,8 @@ export function MagneticButton({ href = "#", children, className = "", variant =
       ref={ref}
       onMouseMove={onMove}
       onMouseLeave={onLeave}
+      role="button"
+      aria-label={typeof children === 'string' ? children : 'Bouton'}
       className={`${baseCommon} ${variants[variant] ?? variants.primary} ${className}`}
     >
       <span ref={innerRef} className="will-change-transform transition-transform duration-150 ease-out inline-flex items-center gap-2">

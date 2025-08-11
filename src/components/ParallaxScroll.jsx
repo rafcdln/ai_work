@@ -21,8 +21,11 @@ export default function ParallaxScroll({
     if (!el) return;
 
     // Préférer les utilisateurs qui ont désactivé les animations
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const mql = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const prefersReducedMotion = mql.matches;
     if (prefersReducedMotion) {
+      el.style.transform = 'none';
+      el.style.willChange = 'auto';
       return;
     }
 

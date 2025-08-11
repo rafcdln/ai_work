@@ -1,0 +1,13 @@
+{
+  "name": "Inner Circle — Luxe Underground AI Platform",
+  "short_name": "Inner Circle",
+  "description": "Plateforme AI exclusive avec démos ultra‑réalistes, Vault privé, Playbooks premium et accès Discord VIP.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0A0A0C",
+  "theme_color": "#0A0A0C",
+  "icons": [
+    { "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}

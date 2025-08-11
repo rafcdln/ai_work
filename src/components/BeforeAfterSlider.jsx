@@ -21,6 +21,15 @@ export default function BeforeAfterSlider({
       const x = (e.touches ? e.touches[0].clientX : e.clientX) - rect.left;
       setPos(Math.min(1, Math.max(0, x / rect.width)));
     }
+    
+    function onKeyDown(e) {
+      if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+        e.preventDefault();
+        const delta = e.key === 'ArrowLeft' ? -0.05 : 0.05;
+        setPos(current => Math.min(1, Math.max(0, current + delta)));
+      }
+    }
+    
     const el = containerRef.current;
     if (!el) return;
     const onMouseMove = (e) => {
@@ -32,10 +41,12 @@ export default function BeforeAfterSlider({
     const onDown = (e) => {
       isDragging.current = true;
       onMove(e);
+      el.focus(); // Focus pour navigation clavier
     };
     const onUp = () => (isDragging.current = false);
 
     el.addEventListener("mousedown", onDown);
+    el.addEventListener("keydown", onKeyDown);
     window.addEventListener("mouseup", onUp);
     window.addEventListener("mousemove", onMouseMove);
     el.addEventListener("touchstart", onDown, { passive: true });
@@ -43,6 +54,7 @@ export default function BeforeAfterSlider({
     window.addEventListener("touchmove", onMove, { passive: true });
     return () => {
       el.removeEventListener("mousedown", onDown);
+      el.removeEventListener("keydown", onKeyDown);
       window.removeEventListener("mouseup", onUp);
       window.removeEventListener("mousemove", onMouseMove);
       el.removeEventListener("touchstart", onDown);
@@ -55,9 +67,12 @@ export default function BeforeAfterSlider({
     <div className="w-full" aria-label="Comparateur avant après">
       <div
         ref={containerRef}
-        className="relative w-full overflow-hidden rounded-2xl border border-white/10 bg-black"
+        className="relative w-full overflow-hidden rounded-2xl border border-white/10 bg-black focus:outline-none focus:ring-2 focus:ring-white/40"
         style={{ height }}
         role="group"
+        tabIndex={0}
+        aria-roledescription="Comparateur d'images"
+        aria-live="polite"
       >
         {/* After (full) */}
         <Image
