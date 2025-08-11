@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import ParallaxScroll, { ScrollReveal, ScrollTransform3D } from "@/components/ParallaxScroll";
 import { MagneticButton } from "@/components/FX";
