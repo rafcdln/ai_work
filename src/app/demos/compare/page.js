@@ -1,3 +1,4 @@
+"use client";
 import BeforeAfterSlider from "@/components/BeforeAfterSlider";
 import { MagneticButton } from "@/components/FX";
 
